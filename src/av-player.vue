@@ -11,7 +11,7 @@ import 'videojs-contrib-hls'
 import videojs from 'video.js'
 const zh = require('video.js/dist/lang/zh-CN.json')
 export default {
-  name: 'VPlayer',
+  name: 'AvPlayer',
   props: {
     src: {
       type: String,
