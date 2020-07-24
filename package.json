@@ -1,5 +1,5 @@
 {
-  "name": "v-player",
+  "name": "@yocss/vue-player",
   "version": "1.0.0",
   "description": "A vue component of video & audio player based on video.js",
   "main": "index.js",
@@ -13,7 +13,6 @@
   },
   "keywords": [
     "vue-player",
-    "v-player",
     "vue-video",
     "video",
     "audio",
