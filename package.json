@@ -1,0 +1,35 @@
+{
+  "name": "v-player",
+  "version": "1.0.0",
+  "description": "A vue component of video & audio player based on video.js",
+  "main": "index.js",
+  "scripts": {
+    "css": "./node_modules/stylus/bin/stylus ./src/style.styl",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Yocss/v-player.git"
+  },
+  "keywords": [
+    "vue-player",
+    "v-player",
+    "vue-video",
+    "video",
+    "audio",
+    "media"
+  ],
+  "author": "Yocss",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/Yocss/v-player/issues"
+  },
+  "homepage": "https://github.com/Yocss/v-player#readme",
+  "dependencies": {
+    "video.js": "7.8.4",
+    "videojs-contrib-hls": "5.15.0"
+  },
+  "devDependencies": {
+    "stylus": "^0.54.8"
+  }
+}
