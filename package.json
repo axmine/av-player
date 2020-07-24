@@ -1,7 +1,7 @@
 {
-  "name": "@yocss/vue-player",
+  "name": "av-player",
   "version": "1.0.0",
-  "description": "A vue component of video & audio player based on video.js",
+  "description": "A vue component of audio & video player based on video.js",
   "main": "index.js",
   "scripts": {
     "css": "./node_modules/stylus/bin/stylus ./src/style.styl",
@@ -12,6 +12,7 @@
     "url": "git+ssh://git@github.com/Yocss/v-player.git"
   },
   "keywords": [
+    "av-player",
     "vue-player",
     "vue-video",
     "video",
@@ -21,9 +22,9 @@
   "author": "Yocss",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/Yocss/v-player/issues"
+    "url": "https://github.com/Yocss/av-player/issues"
   },
-  "homepage": "https://github.com/Yocss/v-player#readme",
+  "homepage": "https://github.com/Yocss/av-player#readme",
   "dependencies": {
     "video.js": "7.8.4",
     "videojs-contrib-hls": "5.15.0"
