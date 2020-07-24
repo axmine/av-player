@@ -1,4 +1,4 @@
-# @yocss/vue-player
+# av-player (audio & video player)
 
 A vue components of video player based on video.js
 
@@ -7,18 +7,18 @@ A vue components of video player based on video.js
 page.vue
 ```javascript
 <template>
-  <v-player
+  <av-player
     :src="source"
     @emit="onEmit"
   />
 </template>
 
-import VPlayer from '@yocss/vue-player'
+import AvPlayer from 'av-player'
 
 export default {
   name: 'PageIndex',
   components: {
-    VPlayer
+    AvPlayer
   },
 
   data () {
