@@ -1,7 +1,7 @@
-import VPlayer from './src/v-player.vue';
+import AvPlayer from './src/av-player.vue';
 
-VPlayer.install = function(Vue) {
-  Vue.component(VPlayer.name, ElIcon);
+AvPlayer.install = function(Vue) {
+  Vue.component(AvPlayer.name, ElIcon);
 };
 
-export default VPlayer;
+export default AvPlayer;
