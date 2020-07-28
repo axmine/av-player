@@ -1,6 +1,6 @@
 {
   "name": "av-player",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A vue component of audio & video player based on video.js",
   "main": "index.js",
   "scripts": {
@@ -26,8 +26,7 @@
   },
   "homepage": "https://github.com/Yocss/av-player#readme",
   "dependencies": {
-    "video.js": "7.8.4",
-    "videojs-contrib-hls": "5.15.0"
+    "video.js": "7.8.4"
   },
   "devDependencies": {
     "stylus": "^0.54.8"
