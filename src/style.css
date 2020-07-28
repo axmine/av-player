@@ -19,7 +19,6 @@
 }
 #v-yocss-player .v-yocss-player-box .vjs-poster {
   background-size: 100% 100%;
-  display: block !important;
 }
 #v-yocss-player .v-yocss-player-box .vjs-big-play-button {
   width: 1.63332em;
@@ -60,13 +59,72 @@
   margin-top: -0.5em;
   z-index: 1;
 }
-#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-paused .vjs-big-play-button {
-  display: block;
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-user-active .vjs-poster {
+  opacity: 1;
+  display: block !important;
+  background-color: transparent;
+  background-image: none !important;
+}
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-user-active .vjs-poster::after {
+  content: '\f103';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1em;
+  margin-top: -1em;
+  color: #666;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 2.4em;
+  line-height: 2em;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0.3em 0 rgba(0,0,0,0.2);
+  font-family: VideoJS;
+  font-weight: 400;
+  font-style: normal;
+  background-color: rgba(255,255,255,0.8);
+}
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-paused .vjs-poster {
+  display: block !important;
+  background-color: transparent;
+  background-image: none !important;
+}
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-paused .vjs-poster::after {
+  content: '\f103';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -1em;
+  margin-top: -1em;
+  color: #666;
+  width: 2em;
+  height: 2em;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  font-size: 2.4em;
+  line-height: 2em;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 0.3em 0 rgba(0,0,0,0.2);
+  font-family: VideoJS;
+  font-weight: 400;
+  font-style: normal;
+  background-color: rgba(255,255,255,0.8);
+}
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-waiting .vjs-poster,
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-seeking .vjs-poster {
+  display: none !important;
 }
 #v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-playing .vjs-poster {
-  opacity: 0;
+  opacity: 0.7;
 }
 #v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-ended .vjs-poster {
+  display: block !important;
   opacity: 1;
 }
 #v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-ended .vjs-big-play-button .vjs-icon-placeholder::before {

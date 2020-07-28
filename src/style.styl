@@ -13,7 +13,7 @@
         display initial
     .vjs-poster
       background-size 100% 100%
-      display block !important
+      // display block !important
     .vjs-big-play-button
       width 1.63332em
       border-radius 50%
@@ -47,20 +47,62 @@
         top 50%
         margin-top -0.5em
         z-index 1
-    &.vjs-has-started.vjs-paused
-      .vjs-big-play-button
-        display block
-    &.vjs-has-started.vjs-playing
-      .vjs-poster
-        opacity 0
-    &.vjs-has-started.vjs-ended
-      .vjs-poster
-        opacity 1
-      .vjs-big-play-button
-        .vjs-icon-placeholder::before
-          content '\f116'
-      .vjs-poster
-        opacity 1
+    &.vjs-has-started
+      pause-status()
+        content '\f103'
+        position absolute
+        left 50%
+        top 50%
+        margin-left -1em
+        margin-top -1em
+        color #666
+        width 2em
+        height 2em
+        display: flex
+        justify-content: center
+        align-content: center
+        font-size 2.4em
+        line-height 2em
+        overflow hidden
+        border-radius 50%
+        box-shadow: 0 0 .3em 0 rgba(#000, .2)
+        font-family VideoJS
+        font-weight 400
+        font-style normal
+        background-color rgba(#fff, .8)
+      &.vjs-user-active
+        .vjs-poster
+          opacity 1
+          display block !important
+          background-color transparent
+          background-image none !important
+          &::after
+            pause-status()
+      &.vjs-paused
+        .vjs-poster
+          display block !important
+          background-color transparent
+          background-image none !important
+          &::after
+            pause-status()
+        // .vjs-big-play-button
+        //   display block
+      &.vjs-waiting // 等待时
+      &.vjs-seeking // 获取进度时
+        .vjs-poster
+          display: none !important
+      &.vjs-playing
+        .vjs-poster
+          opacity 0.7
+      &.vjs-ended
+        .vjs-poster
+          display block !important
+          opacity 1
+        .vjs-big-play-button
+          .vjs-icon-placeholder::before
+            content '\f116'
+        .vjs-poster
+          opacity 1
   &.is-music
     .v-yocss-player-box
       .vjs-fullscreen-control
