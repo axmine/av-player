@@ -45,6 +45,7 @@ export default {
 | poster | poster's url | string |  |
 | options | video.js options | object | {} |
 
+
 ## Events
 emit args => ({ event: string, time: { current: number, duration: number } })
 | event | description |
@@ -55,6 +56,7 @@ emit args => ({ event: string, time: { current: number, duration: number } })
 | error | emit on error |
 | ended | emit after ended play |
 
+
 ## Methods
 
 | method | description |
@@ -63,3 +65,8 @@ emit args => ({ event: string, time: { current: number, duration: number } })
 | pause() | pause play |
 | muted() | on/off volume |
 | src() | change source url |
+
+
+## Change log
+
+2020.7.28: fix click to pause
