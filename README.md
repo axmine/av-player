@@ -69,4 +69,5 @@ emit args => ({ event: string, time: { current: number, duration: number } })
 
 ## Change log
 
+2020.7.30: fix style
 2020.7.28: fix click to pause
