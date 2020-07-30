@@ -1,6 +1,6 @@
 {
   "name": "av-player",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A vue component of audio & video player based on video.js",
   "main": "index.js",
   "scripts": {
