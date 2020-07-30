@@ -66,7 +66,6 @@ emit args => ({ event: string, time: { current: number, duration: number } })
 | muted() | on/off volume |
 | src() | change source url |
 
-
 ## Change log
 
 2020.7.30: fix style
