@@ -127,6 +127,12 @@
   display: block !important;
   opacity: 1;
 }
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-ended .vjs-poster::after {
+  display: none;
+}
+#v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-ended .vjs-big-play-button {
+  display: block;
+}
 #v-yocss-player .v-yocss-player-box.vjs-has-started.vjs-ended .vjs-big-play-button .vjs-icon-placeholder::before {
   content: '\f116';
 }
