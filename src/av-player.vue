@@ -51,12 +51,12 @@ export default {
     this.createPlayer()
   },
   beforeDestroy () {
-    this.clearTimer()
+    // this.clearTimer()
     this.player && this.player.dispose()
   },
   methods: {
     reCreatePlayer () {
-      this.clearTimer()
+      // this.clearTimer()
       if (this.player) {
         this.removeEvent()
         this.player.dispose()
@@ -97,6 +97,7 @@ export default {
     addEvent () {
       this.player.on('loadedmetadata', this.handleLoaded)
       this.player.on('play', this.handlePlay)
+      this.player.on('canplay', this.handleCanPlay)
       this.player.on('timeupdate', this.handleProgress)
       this.player.on('pause', this.handlePause)
       this.player.on('error', this.handleError)
@@ -105,39 +106,47 @@ export default {
     removeEvent () {
       this.player.off('loadedmetadata', this.handleLoaded)
       this.player.off('play', this.handlePlay)
+      this.player.off('canplay', this.handleCanPlay)
       this.player.off('timeupdate', this.handleProgress)
       this.player.off('pause', this.handlePause)
       this.player.off('error', this.handleError)
       this.player.off('ended', this.handleEnded)
     },
     handleLoaded () { this.doEmit('loaded') },
+    handleCanPlay () { this.doEmit('canplay') },
     handlePlay () {
       const src = this.player.src()
       const i = src.lastIndexOf('.')
       this.isMusic = src.slice(i + 1).toLowerCase() === 'mp3'
-      this.startLog()
+      // this.startLog()
       // this.doEmit('play', this.player.duration())
       this.doEmit('play')
     },
     handleProgress () { this.doEmit('timeupdate', this.player.currentTime()) },
     handlePause () { this.doEmit('pause') },
-    handleError () { this.doEmit('error') },
+    handleError (error) { this.doEmit('error', { error }) },
     handleEnded () { this.doEmit('ended') },
     // log user's progress
-    startLog () {
-      this.clearTimer()
-      this.timer = setInterval(() => {
-        this.thisTime = Math.ceil(this.player.currentTime)
-        if (this.thisTime !== this.lastTime) {
-          this.lastTime = this.thisTime
-          this.doEmit('play', this.thisTime)
-        }
-      }, 10000)
-    },
-    clearTimer () { clearInterval(this.timer) },
-    doEmit (event, current = this.player.currentTime() || 0, duration = this.player.duration() || 0) {
-      event !== 'play' && this.clearTimer()
-      this.$emit('emit', { event, time: { current, duration } })
+    // startLog () {
+    //   this.clearTimer()
+    //   this.timer = setInterval(() => {
+    //     this.thisTime = Math.ceil(this.player.currentTime)
+    //     if (this.thisTime !== this.lastTime) {
+    //       this.lastTime = this.thisTime
+    //       this.doEmit('play', this.thisTime)
+    //     }
+    //   }, 10000)
+    // },
+    // clearTimer () { clearInterval(this.timer) },
+    doEmit (event, data = {}) {
+      // event !== 'play' && this.clearTimer()
+      const current = this.player.currentTime() || 0
+      const duration = this.player.duration() || 0
+      const emitData = Object.assign({
+        event,
+        time: { current, duration }
+      }, data)
+      this.$emit('emit', emitData)
     }
   }
 }
