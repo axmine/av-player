@@ -39,34 +39,34 @@ export default {
         'loadedmetadata', // 元数据加载完成
         'loadedplaylist', // 播放列表加载完成
         'progress',
-        'earlyabort', // 提前终止
+        // 'earlyabort', // 提前终止
         'canplay',
         'firstplay',
-        'textdata', // 字幕数据?
+        // 'textdata', // 字幕数据?
         'play',
         'pause',
         'ended',
-        'seeking', // 查找中
+        // 'seeking', // 查找中
         'seeked', // 查找完成
-        'stageclick', // 阶段视频点击
-        'sourceset', // 源设置
-        'playing',
+        // 'stageclick', // 阶段视频点击
+        // 'sourceset', // 源设置
+        // 'playing',
         'waiting',
         'timeupdate', // 播放更新
         'controlsvisible',
-        'durationchange',
-        'enterpictureinpicture', // 进入画中画
-        'leavepictureinpicture', // 离开画中画
+        // 'durationchange',
+        // 'enterpictureinpicture', // 进入画中画
+        // 'leavepictureinpicture', // 离开画中画
         'fullscreenchange', // 全屏状态改变
-        'webkitbeginfullscreen', // 开启全屏
-        'playerreset', // 播放器重置
-        'webkitendfullscreen', // 结束全屏
-        'volumechange', // 声音改变
-        'ratechange',
-        'mediachange', // 媒体改变
-        'playerresize', // 播放器尺寸改变
-        'posterchange', // 封面改变
-        'fullscreenerror', // 全屏错误
+        // 'webkitbeginfullscreen', // 开启全屏
+        // 'webkitendfullscreen', // 结束全屏
+        // 'playerreset', // 播放器重置
+        // 'volumechange', // 声音改变
+        // 'ratechange',
+        // 'mediachange', // 媒体改变
+        // 'playerresize', // 播放器尺寸改变
+        // 'posterchange', // 封面改变
+        // 'fullscreenerror', // 全屏错误
         'error'
       ]
     }
