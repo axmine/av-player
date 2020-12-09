@@ -33,7 +33,42 @@ export default {
       lastTime: 0,
       thisTime: 0,
       video: null,
-      isMusic: false
+      isMusic: false,
+      events: [
+        'loadstart', // 加载开始
+        'loadedmetadata', // 元数据加载完成
+        'loadedplaylist', // 播放列表加载完成
+        'progress',
+        'earlyabort', // 提前终止
+        'canplay',
+        'firstplay',
+        'textdata', // 字幕数据?
+        'play',
+        'pause',
+        'ended',
+        'seeking', // 查找中
+        'seeked', // 查找完成
+        'stageclick', // 阶段视频点击
+        'sourceset', // 源设置
+        'playing',
+        'waiting',
+        'timeupdate', // 播放更新
+        'controlsvisible',
+        'durationchange',
+        'enterpictureinpicture', // 进入画中画
+        'leavepictureinpicture', // 离开画中画
+        'fullscreenchange', // 全屏状态改变
+        'webkitbeginfullscreen', // 开启全屏
+        'playerreset', // 播放器重置
+        'webkitendfullscreen', // 结束全屏
+        'volumechange', // 声音改变
+        'ratechange',
+        'mediachange', // 媒体改变
+        'playerresize', // 播放器尺寸改变
+        'posterchange', // 封面改变
+        'fullscreenerror', // 全屏错误
+        'error'
+      ]
     }
   },
   // computed: {},
@@ -95,51 +130,25 @@ export default {
       }
     },
     addEvent () {
-      this.player.on('loadedmetadata', this.handleLoaded)
-      this.player.on('play', this.handlePlay)
-      this.player.on('canplay', this.handleCanPlay)
-      this.player.on('timeupdate', this.handleProgress)
-      this.player.on('pause', this.handlePause)
-      this.player.on('error', this.handleError)
-      this.player.on('ended', this.handleEnded)
+      for (let i = 0; i < this.events.length; i++) {
+        const event = this.events[i]
+        if (event === 'play') {
+          const i = this.player.src().lastIndexOf('.')
+          this.isMusic = src.slice(i + 1).toLowerCase() === 'mp3'
+        }
+        this.player.on(event, this.playEvent)
+      }
     },
     removeEvent () {
-      this.player.off('loadedmetadata', this.handleLoaded)
-      this.player.off('play', this.handlePlay)
-      this.player.off('canplay', this.handleCanPlay)
-      this.player.off('timeupdate', this.handleProgress)
-      this.player.off('pause', this.handlePause)
-      this.player.off('error', this.handleError)
-      this.player.off('ended', this.handleEnded)
+      for (let i = 0; i < this.events.length; i++) {
+        this.player.off(this.events[i], this.playEvent)
+      }
     },
-    handleLoaded () { this.doEmit('loaded') },
-    handleCanPlay () { this.doEmit('canplay') },
-    handlePlay () {
-      const src = this.player.src()
-      const i = src.lastIndexOf('.')
-      this.isMusic = src.slice(i + 1).toLowerCase() === 'mp3'
-      // this.startLog()
-      // this.doEmit('play', this.player.duration())
-      this.doEmit('play')
+    playEvent (e) {
+      const data = e.type !== 'error' ? {} : e
+      this.doEmit(e.type, data)
     },
-    handleProgress () { this.doEmit('timeupdate', this.player.currentTime()) },
-    handlePause () { this.doEmit('pause') },
-    handleError (error) { this.doEmit('error', { error }) },
-    handleEnded () { this.doEmit('ended') },
-    // log user's progress
-    // startLog () {
-    //   this.clearTimer()
-    //   this.timer = setInterval(() => {
-    //     this.thisTime = Math.ceil(this.player.currentTime)
-    //     if (this.thisTime !== this.lastTime) {
-    //       this.lastTime = this.thisTime
-    //       this.doEmit('play', this.thisTime)
-    //     }
-    //   }, 10000)
-    // },
-    // clearTimer () { clearInterval(this.timer) },
     doEmit (event, data = {}) {
-      // event !== 'play' && this.clearTimer()
       const current = this.player.currentTime() || 0
       const duration = this.player.duration() || 0
       const emitData = Object.assign({
