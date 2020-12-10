@@ -37,23 +37,24 @@ export default {
       events: [
         'loadstart', // 加载开始
         'loadedmetadata', // 元数据加载完成
-        'loadedplaylist', // 播放列表加载完成
-        'progress',
-        // 'earlyabort', // 提前终止
+        // 'loadedplaylist', // 播放列表加载完成
         'canplay',
         'firstplay',
-        // 'textdata', // 字幕数据?
+        'playing',
         'play',
         'pause',
+        'seeking',
+        'waiting',
+        'seeked', // 查找完成
+        'timeupdate', // 播放更新
+        'progress',
+        // 'earlyabort', // 提前终止
+        // 'textdata', // 字幕数据?
         'ended',
         // 'seeking', // 查找中
-        'seeked', // 查找完成
         // 'stageclick', // 阶段视频点击
         // 'sourceset', // 源设置
-        // 'playing',
-        'waiting',
-        'timeupdate', // 播放更新
-        'controlsvisible',
+        // 'controlsvisible',
         // 'durationchange',
         // 'enterpictureinpicture', // 进入画中画
         // 'leavepictureinpicture', // 离开画中画
@@ -83,15 +84,16 @@ export default {
     }
   },
   mounted () {
-    this.createPlayer()
+    this.timer = setTimeout(() => {
+      this.createPlayer()
+    }, 20)
   },
   beforeDestroy () {
-    // this.clearTimer()
+    clearTimeout(this.timer)
     this.player && this.player.dispose()
   },
   methods: {
     reCreatePlayer () {
-      // this.clearTimer()
       if (this.player) {
         this.removeEvent()
         this.player.dispose()
@@ -99,6 +101,7 @@ export default {
       }
     },
     createPlayer () {
+      clearTimeout(this.timer)
       if (this.src || this.options.sources) {
         videojs.addLanguage('zh-CN', zh)
         // 1. create video tag
@@ -133,7 +136,8 @@ export default {
       for (let i = 0; i < this.events.length; i++) {
         const event = this.events[i]
         if (event === 'play') {
-          const i = this.player.src().lastIndexOf('.')
+          const src = this.player.src()
+          const i = src.lastIndexOf('.')
           this.isMusic = src.slice(i + 1).toLowerCase() === 'mp3'
         }
         this.player.on(event, this.playEvent)
@@ -145,8 +149,7 @@ export default {
       }
     },
     playEvent (e) {
-      const data = e.type !== 'error' ? {} : e
-      this.doEmit(e.type, data)
+      this.doEmit(e.type, e)
     },
     doEmit (event, data = {}) {
       const current = this.player.currentTime() || 0
