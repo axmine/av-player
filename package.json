@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/Yocss/av-player#readme",
   "dependencies": {
-    "video.js": "7.8.4",
+    "video.js": "7.14.3",
     "videojs-contrib-hls": "5.15.0"
   },
   "devDependencies": {
